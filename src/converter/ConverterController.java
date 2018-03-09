@@ -19,26 +19,28 @@ public class ConverterController {
 	ComboBox<Length> unit2;
 
 	public void handleConvert(ActionEvent event) {
-		try {
-			textfield1.setStyle("-fx-text-fill: black");
-			textfield2.setStyle("-fx-text-fill: black");
-			double value;
-			String text1 = textfield1.getText().trim();
-			String text2 = textfield2.getText().trim();
-			double val1 = unit1.getValue().getValue();
-			double val2 = unit2.getValue().getValue();
-			if (!text1.equals("")) {
+		double val1 = unit1.getValue().getValue();
+		double val2 = unit2.getValue().getValue();
+		double value;
+		String text1 = textfield1.getText().trim();
+		String text2 = textfield2.getText().trim();
+		if (!text1.equals("")) {
+			try {
 				value = Double.parseDouble(text1);
-				value = value * (val1 / val2);
+				System.out.println(val2);
+				value = (value*val1)/val2;
 				textfield2.setText(String.format("%.4g", value));
-			} else if (!text2.equals("")) {
-				value = Double.parseDouble(text2);
-				value = value * (val1 / val2);
-				textfield1.setText(String.format("%.4g", value));
+			} catch (NumberFormatException e) {
+				textfield1.setStyle("-fx-text-fill: red");
 			}
-		} catch (NumberFormatException e) {
-			textfield1.setStyle("-fx-text-fill: red");
-			textfield2.setStyle("-fx-text-fill: red");
+		} else if (!text2.equals("")) {
+			try {
+				value = Double.parseDouble(text2);
+				value = (value *val2) / val1;
+				textfield1.setText(String.format("%.4g", value));
+			} catch (NumberFormatException e) {
+				textfield2.setStyle("-fx-text-fill: red");
+			}
 		}
 	}
 
