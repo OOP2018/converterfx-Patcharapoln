@@ -4,20 +4,29 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+/**
+ * UI controller for event and initializing components. 
+ * @author Patcharapol Nirunpornputta
+ *
+ */
 public class ConverterController {
 	@FXML
-	TextField textfield1;
+	private TextField textfield1;
 	@FXML
-	TextField textfield2;
+	private TextField textfield2;
 	@FXML
-	Button convert;
+	private Button convert;
 	@FXML
-	Button clear;
+	private Button clear;
 	@FXML
-	ComboBox<Length> unit1;
+	private ComboBox<Length> unit1;
 	@FXML
-	ComboBox<Length> unit2;
+	private ComboBox<Length> unit2;
 
+	/**
+	 * Convert distance form one to another.
+	 * @param event is a command from user.
+	 */
 	public void handleConvert(ActionEvent event) {
 		double val1 = unit1.getValue().getValue();
 		double val2 = unit2.getValue().getValue();
@@ -27,7 +36,6 @@ public class ConverterController {
 		if (!text1.equals("")) {
 			try {
 				value = Double.parseDouble(text1);
-				System.out.println(val2);
 				value = (value*val1)/val2;
 				textfield2.setText(String.format("%.4g", value));
 			} catch (NumberFormatException e) {
@@ -44,11 +52,18 @@ public class ConverterController {
 		}
 	}
 
+	/**
+	 * Clear all text field.
+	 * @param event is a command from user.
+	 */
 	public void handleClear(ActionEvent event) {
 		textfield1.clear();
 		textfield2.clear();
 	}
 
+	/**
+	 * Add all length unit to combo boxes.
+	 */
 	@FXML
 	public void initialize() {
 		if (unit1 != null) {
