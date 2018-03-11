@@ -7,8 +7,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
-
+/**
+ * Main class for length converter application.
+ * @author Patcharapol Nirunpornputta.
+ *
+ */
 public class Main extends Application {
+	/**
+	 * Start an user interface.
+	 */
 	@Override
 	public void start(Stage stage) {
 		try {
